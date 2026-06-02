@@ -11,6 +11,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Initialize session state for authentication
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
+
 # Custom CSS for better styling
 st.markdown("""
 <style>
@@ -40,12 +44,47 @@ st.title("💰 AI Money Mentor")
 st.markdown("*Your Intelligent Financial Planning Assistant*")
 st.divider()
 
-# Sidebar
-with st.sidebar:
-    st.header("📋 Navigation")
-    page = st.radio("Choose a section:", ["Financial Analysis", "Ask for Explanation", "About"])
+# Authentication Logic
+if not st.session_state['authenticated']:
+    st.subheader("Welcome to AI Money Mentor")
+    auth_mode = st.tabs(["Login", "Sign Up"])
+    
+    with auth_mode[0]:
+        login_username = st.text_input("Username", key="login_user")
+        login_password = st.text_input("Password", type="password", key="login_pass")
+        if st.button("Login", type="primary"):
+            # In a real app, verify against the FastAPI backend
+            if login_username and login_password:
+                st.session_state['authenticated'] = True
+                st.session_state['username'] = login_username
+                st.rerun()
+            else:
+                st.error("Invalid credentials")
+                
+    with auth_mode[1]:
+        reg_email = st.text_input("Email", key="reg_email")
+        reg_user = st.text_input("Username", key="reg_user")
+        reg_pass = st.text_input("Password", type="password", key="reg_pass")
+        if st.button("Create Account"):
+            st.success("Account created! Please login.")
+    
+    st.info("💡 Logging in allows you to save your financial history and track goals over time.")
+    st.stop() # Stop execution here if not authenticated
 
-if page == "Financial Analysis":
+# --- Protected Content ---
+with st.sidebar:
+    st.header(f"👤 Welcome, {st.session_state.get('username', 'User')}!")
+    page = st.radio("Choose a section:", ["Financial Analysis", "History", "Ask for Explanation", "About"])
+    if st.button("Log Out"):
+        st.session_state['authenticated'] = False
+        st.rerun()
+
+if page == "History":
+    st.header("📂 Your Financial History")
+    st.info("This section will display your past analyses saved in the database.")
+    # Here you would fetch records from: GET http://localhost:8000/history
+
+elif page == "Financial Analysis":
     st.header("📊 Enter Your Financial Data")
     
     col1, col2, col3 = st.columns(3)

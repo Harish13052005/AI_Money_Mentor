@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "AI Money Mentor",
+    "slug": "ai-money-mentor-mobile",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.ai.moneymentor"
+    }
+  }
+}

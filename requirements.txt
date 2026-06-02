@@ -3,10 +3,14 @@ uvicorn[standard]
 langgraph
 openai
 pydantic
+email-validator
 streamlit
 python-dotenv
 python-multipart
 pytest
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
 
 # Multi-provider LLM support
 groq

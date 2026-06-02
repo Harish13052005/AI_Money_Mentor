@@ -3,6 +3,7 @@ import requests
 import json
 from dotenv import load_dotenv
 import os
+import pytest
 
 load_dotenv()
 
@@ -20,6 +21,8 @@ SAMPLE_DATA = {
 }
 
 def test_analyze_endpoint():
+    """Runs a real HTTP request to the /analyze endpoint and returns the result for fixtures/tests."""
+
     print("\n" + "="*60)
     print("Testing /analyze endpoint")
     print("="*60)
@@ -44,6 +47,11 @@ def test_analyze_endpoint():
         print(f"✗ Connection Error: {str(e)}")
         print(f"  Make sure the server is running at {BASE_URL}")
         return None
+
+@pytest.fixture(scope='module')
+def analysis():
+    return test_analyze_endpoint()
+
 
 def test_explain_endpoint(analysis):
     if not analysis:

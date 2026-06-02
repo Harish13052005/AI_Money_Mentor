@@ -1,9 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from typing import List, Optional, TypedDict
 
 class Investment(BaseModel):
     type: str
     amount: float
+
+    @field_validator('amount')
+    def amount_non_negative(cls, v):
+        if v < 0:
+            raise ValueError('investment amount must be non-negative')
+        return v
 
 class UserInput(BaseModel):
     income: float
@@ -11,6 +17,18 @@ class UserInput(BaseModel):
     savings: float
     investments: List[Investment]
     goals: List[str]
+
+    @field_validator('income')
+    def income_positive(cls, v):
+        if v <= 0:
+            raise ValueError('income must be positive')
+        return v
+
+    @field_validator('expenses', 'savings')
+    def non_negative(cls, v):
+        if v < 0:
+            raise ValueError('expenses and savings must be non-negative')
+        return v
 
 class AnalysisResult(BaseModel):
     savings_rate: float
