@@ -12,6 +12,7 @@ export default function NewRecordScreen({ navigation }) {
   const [goals, setGoals] = useState('');
   const [investments, setInvestments] = useState([emptyInvestment]);
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleInvestmentChange = (index, field, value) => {
     const next = [...investments];
@@ -25,15 +26,36 @@ export default function NewRecordScreen({ navigation }) {
 
   const handleSubmit = async () => {
     setMessage('');
+    setError('');
+
+    const parsedIncome = parseFloat(income);
+    const parsedExpenses = parseFloat(expenses);
+    const parsedSavings = parseFloat(savings);
+
+    if (isNaN(parsedIncome) || isNaN(parsedExpenses) || isNaN(parsedSavings)) {
+      setError('Income, expenses, and savings must be valid numbers.');
+      return;
+    }
+
+    const parsedInvestments = [];
+    for (const inv of investments) {
+      if (inv.type || inv.amount) {
+        const amount = parseFloat(inv.amount);
+        if (!inv.type || inv.type.trim() === '' || isNaN(amount)) {
+          setError('All investments must have a valid type and amount.');
+          return;
+        }
+        parsedInvestments.push({ type: inv.type.trim(), amount });
+      }
+    }
+
     try {
       const token = await AsyncStorage.getItem('token');
       const payload = {
-        income: parseFloat(income),
-        expenses: parseFloat(expenses),
-        savings: parseFloat(savings),
-        investments: investments
-          .filter((inv) => inv.type && inv.amount)
-          .map((inv) => ({ type: inv.type, amount: parseFloat(inv.amount) })),
+        income: parsedIncome,
+        expenses: parsedExpenses,
+        savings: parsedSavings,
+        investments: parsedInvestments,
         goals: goals.split(',').map((goal) => goal.trim()).filter(Boolean),
       };
 
@@ -78,6 +100,7 @@ export default function NewRecordScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <Button title="Submit" onPress={handleSubmit} />
       </View>
+      {error ? <Text style={styles.error}>{error}</Text> : null}
       {message ? <Text style={styles.message}>{message}</Text> : null}
     </ScrollView>
   );
@@ -91,5 +114,6 @@ const styles = StyleSheet.create({
   investmentRow: { flexDirection: 'row', justifyContent: 'space-between' },
   investmentInput: { flex: 1, marginRight: 8 },
   buttonContainer: { marginTop: 16 },
-  message: { marginTop: 12, color: 'green' }
+  message: { marginTop: 12, color: 'green' },
+  error: { marginTop: 12, color: 'red' }
 });

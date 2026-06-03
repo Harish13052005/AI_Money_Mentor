@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LoginScreen from './screens/LoginScreen';
@@ -29,7 +30,11 @@ export default function App() {
   };
 
   if (!initialRoute) {
-    return null;
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
   return (
@@ -70,3 +75,8 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  loading: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  container: { flex: 1, justifyContent: 'center', padding: 16 },
+});
