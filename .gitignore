@@ -15,3 +15,10 @@ venv.bak/
 .env
 app.log
 .DS_Store
+
+# Expo mobile app ignores
+mobile_app/.expo/
+mobile_app/.expo-shared/
+mobile_app/node_modules/
+mobile_app/dist/
+mobile_app/build/

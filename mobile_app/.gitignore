@@ -1,0 +1,11 @@
+# Expo build artifacts
+.expo/
+.expo-shared/
+node_modules/
+dist/
+build/
+.expo/
+npm-debug.log*
+yarn-error.log*
+
+.expo/

@@ -3,15 +3,27 @@
     "name": "AI Money Mentor",
     "slug": "ai-money-mentor-mobile",
     "version": "1.0.0",
-    "platforms": ["ios", "android", "web"],
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "platforms": ["android", "ios", "web"],
     "assetBundlePatterns": ["**/*"],
+    "icon": "./assets/icon.png",
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
-      "package": "com.ai.moneymentor"
+      "package": "com.ai.moneymentor",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+
+    "extra": {
+      "API_BASE": ""
     }
   }
 }
