@@ -1,47 +1,319 @@
-# AI Money Mentor – Agentic Financial Intelligence System
+# 💰 AI Money Mentor – Agentic Financial Intelligence System
 
-A multi-agent AI system for personalized financial planning.
+AI Money Mentor is a **multi-agent AI-powered financial intelligence platform** that helps users analyze finances, generate personalized financial plans, understand recommendations through explainable AI, and maintain financial history for better decision-making.
 
-## Features
+The project combines **FastAPI, LangGraph, AI orchestration, React Native (Expo), and intelligent financial analysis** to provide a complete financial planning experience.
 
-- Multi-agent architecture with LangGraph orchestration
-- Financial analysis and personalized planning
-- Explainable AI responses
-- Simple memory for previous analyses
-- Logging and audit trail
-- Web API and Streamlit frontend
-- Docker deployment ready
+---
 
-## Setup
+## 🚀 Features
 
-1. Clone the repository and navigate to the directory.
+### 🤖 Multi-Agent AI Architecture
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+* Multi-agent orchestration using **LangGraph**
+* Specialized agents for:
 
-3. Set OpenAI API key in `.env`:
-   ```
-   OPENAI_API_KEY=your-openai-api-key-here
-   ```
+  * Financial analysis
+  * Planning and recommendation
+  * Explanation generation
+  * Memory management
 
-4. Run the backend server:
-   ```bash
-   python main.py
-   ```
+### 💰 Personalized Financial Planning
 
-5. (Optional) Run tests:
-   ```bash
-   pytest
-   ```
+* Income, expenses, savings, and investment analysis
+* Risk-level assessment
+* Personalized financial recommendations
+* Goal-based financial planning
 
-## API Endpoints
+### 🧠 Explainable AI
 
-- `POST /analyze`: Analyze financial data
-- `POST /explain`: Get explanations for previous analysis
+* AI-generated recommendations with explanations
+* Transparency in decision-making
+* Financial reasoning based on user data
 
-## Sample Input
+### 📊 Financial Dashboard
+
+* Overview of financial health
+* Savings insights
+* Risk evaluation
+* Personalized action items
+
+### 📝 Financial Records & History
+
+* Save financial analyses
+* Track historical financial records
+* View detailed financial reports
+* Access previous recommendations
+
+### 📱 Mobile Application
+
+* Cross-platform mobile app using **React Native + Expo**
+* Clean financial dashboard
+* New financial record creation
+* History tracking
+* Detailed report visualization
+
+### 🔄 Multi-Provider AI Support
+
+Supports multiple AI providers:
+
+* OpenAI
+* Groq
+* Hugging Face
+
+Automatic fallback and provider flexibility for reliability.
+
+### 📜 Logging & Audit Trail
+
+* Request logging
+* Financial analysis history
+* Debugging support
+* Traceable AI workflow
+
+### 🐳 Deployment Ready
+
+* Docker support
+* Docker Compose setup
+* API-first architecture
+* Mobile integration ready
+
+---
+
+## 🏗️ Tech Stack
+
+### Backend
+
+* Python
+* FastAPI
+* LangGraph
+* Pydantic
+* Uvicorn
+
+### AI & LLM
+
+* OpenAI
+* Groq
+* Hugging Face
+
+### Frontend / Mobile
+
+* React Native
+* Expo
+
+### Database / Storage
+
+* JSON / Memory-based persistence
+
+### DevOps
+
+* Docker
+* Docker Compose
+
+---
+
+## 📸 Application Screenshots
+
+### Landing Page
+
+![Landing Page](screenshots/landing_page.jpeg)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.jpeg)
+
+### Create New Financial Record
+
+![New Record](screenshots/new_record.jpeg)
+
+### Financial Plan
+
+![Financial Plan](screenshots/financial_plan.jpeg)
+
+### Financial Explanation
+
+![Financial Explanation](screenshots/financial_explaination.jpeg)
+
+### Financial History
+
+![Financial History](screenshots/financial_history.jpeg)
+
+### Record Details
+
+![Record Details](screenshots/record_details.jpeg)
+
+---
+
+## 📂 Project Structure
+
+```txt
+AI_Money_Mentor/
+│
+├── agents/                 # AI agents for financial reasoning
+├── services/               # AI providers, memory, logging
+├── routes/                 # FastAPI API routes
+├── models/                 # Pydantic request/response schemas
+├── mobile_app/             # React Native Expo application
+├── screenshots/            # Application screenshots
+├── logs/                   # Application logs
+├── main.py                 # FastAPI backend entry point
+├── app.py                  # Streamlit frontend (optional)
+├── requirements.txt        # Python dependencies
+├── Dockerfile              # Docker image
+├── docker-compose.yml      # Docker compose setup
+├── .env                    # Environment variables
+└── README.md               # Project documentation
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone Repository
+
+```bash
+git clone <https://github.com/Harish13052005/AI_Money_Mentor>
+cd AI_Money_Mentor
+```
+
+---
+
+### 2. Create Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+Activate environment:
+
+#### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+#### Linux / Mac
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4. Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+GROQ_API_KEY=your_groq_api_key
+HUGGINGFACE_API_KEY=your_huggingface_api_key
+```
+
+---
+
+## ▶️ Running the Backend
+
+Start FastAPI server:
+
+```bash
+python main.py
+```
+
+or
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+API Docs:
+
+```txt
+http://localhost:8000/docs
+```
+
+For physical mobile device testing:
+
+```txt
+http://YOUR_LOCAL_IP:8000
+```
+
+Example:
+
+```txt
+http://192.168.0.108:8000
+```
+
+---
+
+## 📱 Running the Mobile App (Expo)
+
+Move to mobile app:
+
+```bash
+cd mobile_app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start Expo:
+
+```bash
+npm start
+```
+
+Update API base URL in:
+
+```txt
+mobile_app/services/api.js
+```
+
+Set:
+
+### Android Emulator
+
+```txt
+http://10.0.2.2:8000
+```
+
+### iOS Simulator
+
+```txt
+http://localhost:8000
+```
+
+### Physical Device
+
+```txt
+http://YOUR_MACHINE_IP:8000
+```
+
+Example:
+
+```txt
+http://192.168.0.108:8000
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Analyze Financial Data
+
+**POST** `/analyze`
+
+Sample Input:
 
 ```json
 {
@@ -49,82 +321,78 @@ A multi-agent AI system for personalized financial planning.
   "expenses": 3000,
   "savings": 1000,
   "investments": [
-    {"type": "stocks", "amount": 2000},
-    {"type": "mutual_funds", "amount": 1000}
+    {
+      "type": "stocks",
+      "amount": 2000
+    },
+    {
+      "type": "mutual_funds",
+      "amount": 1000
+    }
   ],
-  "goals": ["buy house", "retirement"]
+  "goals": [
+    "buy house",
+    "retirement"
+  ]
 }
 ```
 
-## Sample Output
+---
 
-```json
-{
-  "summary": "Savings rate: 40.0%, Risk: Medium",
-  "issues": ["Insufficient emergency fund"],
-  "financial_plan": "Build emergency fund, diversify investments...",
-  "recommended_actions": ["Save more for emergency", "Invest in bonds"],
-  "risk_level": "Medium",
-  "explanation": "Plan generated based on your data and goals."
-}
-```
+### Get Financial Explanation
 
-## Deployment
+**POST** `/explain`
 
-### Using Docker
+Returns explainable insights for generated financial plans.
 
-1. Build and run with Docker Compose:
-   ```bash
-   docker-compose up --build
-   ```
+---
 
-2. Or manually:
-   ```bash
-   docker build -t ai-money-mentor .
-   docker run -p 8000:8000 --env-file .env ai-money-mentor
-   ```
-
-### Local Development
-
-- Backend: `python main.py`
-- Frontend: `streamlit run app.py`
-
-## Mobile App (Expo)
-
-1. Change into the `mobile_app` folder and install dependencies:
+## 🧪 Running Tests
 
 ```bash
-cd mobile_app
-npm install
+pytest
 ```
 
-2. Start the Expo development server:
+---
+
+## 🐳 Docker Deployment
+
+### Using Docker Compose
 
 ```bash
-npm run start
+docker-compose up --build
 ```
 
-3. Update `mobile_app/services/api.js` `API_BASE` to point to your backend host:
+### Manual Docker Setup
 
-- For Android emulator: `http://10.0.2.2:8000`
-- For iOS simulator: `http://192.168.0.39:8000`
-- For physical device: `http://<YOUR_MACHINE_IP>:8000`
+Build image:
 
-4. Build a production app using Expo Application Services (EAS) or publish via the Expo Go app.
-
-## Project Structure
-
+```bash
+docker build -t ai-money-mentor .
 ```
-ET_GenAI/
-├── agents/                 # Agent implementations
-├── services/               # OpenAI, memory, logging
-├── routes/                 # FastAPI routes
-├── models/                 # Pydantic models
-├── main.py                 # FastAPI app
-├── app.py                  # Streamlit frontend
-├── requirements.txt        # Dependencies
-├── Dockerfile              # Docker image
-├── docker-compose.yml      # Docker compose
-├── .env                    # Environment variables
-└── README.md               # This file
+
+Run container:
+
+```bash
+docker run -p 8000:8000 --env-file .env ai-money-mentor
 ```
+
+---
+
+## 🎯 Future Improvements
+
+* User authentication
+* Cloud database integration
+* Real-time expense tracking
+* Advanced investment recommendations
+* Budget forecasting
+* AI chat-based financial assistant
+
+---
+
+## 👨‍💻 Author
+
+**Harish Kumar**
+Computer Science Engineer | Full Stack & AI Enthusiast
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
