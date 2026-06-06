@@ -7,7 +7,7 @@ import json
 import sys
 from datetime import datetime
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://192.168.0.39:8501"
 RESULTS = []
 
 def log_test(name, status, details=""):

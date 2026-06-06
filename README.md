@@ -107,7 +107,7 @@ npm run start
 3. Update `mobile_app/services/api.js` `API_BASE` to point to your backend host:
 
 - For Android emulator: `http://10.0.2.2:8000`
-- For iOS simulator: `http://localhost:8000`
+- For iOS simulator: `http://192.168.0.39:8000`
 - For physical device: `http://<YOUR_MACHINE_IP>:8000`
 
 4. Build a production app using Expo Application Services (EAS) or publish via the Expo Go app.

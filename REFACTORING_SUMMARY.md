@@ -511,7 +511,7 @@ OPENAI_API_KEY=<from AWS Secrets Manager>
 
 3. **Test System**
    ```bash
-   curl http://localhost:8000/health
+   curl http://192.168.0.39:8000/health
    python main.py
    ```
 

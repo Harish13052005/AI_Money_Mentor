@@ -177,12 +177,12 @@ POST /explain
 
 ### 1. Check Provider Health
 ```bash
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 ```
 
 ### 2. Test Analysis
 ```bash
-curl -X POST http://localhost:8000/analyze \
+curl -X POST http://192.168.0.108:8000/analyze \
   -H "Content-Type: application/json" \
   -d '{
     "income": 5000,
@@ -207,7 +207,7 @@ INFO: Successfully used groq provider
 - Check internet connection
 - Verify API keys in `.env`
 - Check provider quota/rate limits
-- Run `curl http://localhost:8000/health`
+- Run `curl http://192.168.0.39:8000/health`
 
 ### Problem: Provider timeout
 **Solution:**
@@ -318,7 +318,7 @@ service = AIService(manager)
 
 If you encounter issues:
 1. Check logs in `/logs/`
-2. Run health check: `curl http://localhost:8000/health`
+2. Run health check: `curl http://192.168.0.39:8000/health`
 3. Verify `.env` configuration
 4. Check provider status pages
 

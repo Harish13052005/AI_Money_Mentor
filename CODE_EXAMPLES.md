@@ -159,7 +159,7 @@ import requests
 
 # Switch provider
 response = requests.post(
-    "http://localhost:8000/set-provider",
+    "http://192.168.0.108:8000/set-provider",
     json={"provider": "together"}
 )
 

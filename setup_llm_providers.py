@@ -268,7 +268,7 @@ def main():
     print("  1. pip install -r requirements.txt")
     print("  2. python main.py (backend)")
     print("  3. streamlit run app.py (frontend)")
-    print("  4. GET http://localhost:8000/health (check providers)")
+    print("  4. GET http://192.168.0.39:8000/health (check providers)")
 
 
 if __name__ == "__main__":

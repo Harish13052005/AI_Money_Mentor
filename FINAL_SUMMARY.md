@@ -155,7 +155,7 @@ Your existing REST API endpoints work **exactly the same**. The magic happens in
 
 ### 1. Health Check Endpoint
 ```bash
-GET http://localhost:8000/health
+GET http://192.168.0.108:8000/health
 
 Response:
 {
@@ -174,7 +174,7 @@ Response:
 
 ### 2. Set Provider Endpoint
 ```bash
-POST http://localhost:8000/set-provider
+POST http://192.168.0.108:8000/set-provider
 
 {
   "provider": "together"
@@ -262,13 +262,13 @@ __pycache__/      # Python cache
 
 #### Test 1: Health Check
 ```bash
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 # Should show available providers
 ```
 
 #### Test 2: Make Request
 ```bash
-curl -X POST http://localhost:8000/analyze \
+curl -X POST http://192.168.0.108:8000/analyze \
   -H "Content-Type: application/json" \
   -d '{
     "income": 5000,
@@ -540,7 +540,7 @@ You now have a **production-grade, multi-provider LLM system** that will:
 3. **Architecture?** → `ARCHITECTURE.md`
 4. **Code examples?** → `CODE_EXAMPLES.md`
 5. **What changed?** → `REFACTORING_SUMMARY.md`
-6. **Provider health?** → `curl http://localhost:8000/health`
+6. **Provider health?** → `curl http://192.168.0.108:8000/health`
 
 ---
 

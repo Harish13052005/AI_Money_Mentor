@@ -8,7 +8,7 @@ import pytest
 load_dotenv()
 
 # Test configuration
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://192.168.0.39:8000"
 SAMPLE_DATA = {
     "income": 5000,
     "expenses": 3000,

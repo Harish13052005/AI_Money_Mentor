@@ -94,7 +94,8 @@ The AI Money Mentor application (FastAPI backend + Expo React Native mobile) has
 
 ### Configuration
 - **LAN IP:** 192.168.0.103:8000 (set in `mobile_app/services/api.js`)
-- **Metro Bundler:** Running on port 19001 (CI mode, non-interactive)
+- **LAN IP:** 192.168.0.108:8000 (set in `mobile_app/services/api.js`)
+ - **Metro Bundler:** Running on port 19001 (CI mode, non-interactive)
 - **SDK Version:** Expo SDK ~48.0.0
 - **React Native:** 0.71.14
 
@@ -155,7 +156,7 @@ TOGETHER_API_KEY = [optional]
 1. **Connect to same LAN** as development machine (192.168.0.x)
 2. **Open Expo Go app**
 3. **Scan QR code** from terminal output (Metro at localhost:19001)
-4. **App loads** and connects to backend at 192.168.0.103:8000
+4. **App loads** and connects to backend at 192.168.0.108:8000
 5. **Test flows:**
    - Register with new credentials
    - Login
@@ -197,7 +198,7 @@ adb reverse tcp:19001 tcp:19001
 ✅ main.py - Updated CORS, added create_all()
 ✅ models/db_models.py - Added is_active column
 ✅ services/openai_service.py - Added fallback responses
-✅ mobile_app/services/api.js - Set LAN IP to 192.168.0.103
+✅ mobile_app/services/api.js - Set LAN IP to 192.168.0.108
 ✅ mobile_app/screens/DashboardScreen.js - Fixed duplicate styles
 ✅ mobile_app/screens/RecordDetailScreen.js - Added AsyncStorage import
 ✅ requirements.txt - Added email-validator, python-jose, passlib dependencies

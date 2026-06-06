@@ -81,7 +81,7 @@ def check_hardcoded_ips():
             content = f.read()
             if "http://localhost" in content or "http://127" in content:
                 WARNINGS.append(f"Hardcoded localhost in {js_file.relative_to(BASE_DIR)}")
-                if "http://localhost:8000" in content:
+                if "http://192.168.0.39:8000" in content:
                     WARNINGS.append(f"  → Mobile app has hardcoded backend URL - needs env config for production")
 
 def check_pydantic_orm_mode():

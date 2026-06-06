@@ -26,8 +26,8 @@
 .venv\Scripts\activate
 python main.py
 ```
-- Server runs on: http://localhost:8000
-- API docs available at: http://localhost:8000/docs
+Server runs on: http://192.168.0.108:8000
+API docs available at: http://192.168.0.108:8000/docs
 
 ### 2. **Start the Streamlit Frontend**
 ```bash
@@ -46,7 +46,7 @@ python test_system.py
 test_api.bat
 
 # Or using any HTTP client
-POST http://localhost:8000/analyze
+POST http://192.168.0.108:8000/analyze
 Content-Type: application/json
 
 {
@@ -138,9 +138,9 @@ uvicorn.run(app, host="0.0.0.0", port=8000)  # Change port here
 - Restart: `python main.py`
 
 ### Streamlit won't connect to backend
-- Verify backend is running: Open http://localhost:8000/docs
+- Verify backend is running: Open http://192.168.0.39:8000/docs
 - Check firewall settings
-- Try with direct URL: http://127.0.0.1:8000
+- Try with direct URL: http://192.168.0.39:8000
 
 ### OpenAI API errors
 - Check API key is valid and in `.env` file
@@ -173,18 +173,18 @@ pytest tests/test_models.py -v
 ```bash
 docker-compose up --build
 ```
-- Access at: http://localhost:8000
+- Access at: http://192.168.0.39:8000
 
 ### Manual Deployment
 1. Set up Python environment
 2. Install dependencies: `pip install -r requirements.txt`
 3. Set environment variables
 4. Run: `python main.py`
-5. Access backend at: http://localhost:8000
+5. Access backend at: http://192.168.0.39:8000
 
 ## 📞 Support
 
-- Check API docs: http://localhost:8000/docs
+- Check API docs: http://192.168.0.39:8000/docs
 - Review logs: `app.log`
 - Check error messages in Streamlit UI
 - Verify environment configuration

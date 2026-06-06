@@ -191,7 +191,7 @@ if not SECRET_KEY:
 ```
 [PASS] API_BASE uses dynamic getApiBase() function
 [PASS] Android emulator: http://10.0.2.2:8000
-[PASS] iOS/Web: http://localhost:8000
+[PASS] iOS/Web: http://192.168.0.108:8000
 [PASS] Platform-aware URL routing
 ```
 

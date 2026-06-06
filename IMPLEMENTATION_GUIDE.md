@@ -78,7 +78,7 @@ streamlit run app.py
 ### Step 5: Verify It Works (optional)
 ```bash
 # Check provider health
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 
 # Expected: All providers working ✓
 ```
@@ -143,7 +143,7 @@ LLM Response ✅
 
 ### 1. Health Check
 ```bash
-GET http://localhost:8000/health
+GET http://192.168.0.108:8000/health
 
 Response: {
   "status": "healthy",
@@ -158,7 +158,7 @@ Response: {
 
 ### 2. Switch Provider (Runtime)
 ```bash
-POST http://localhost:8000/set-provider
+POST http://192.168.0.108:8000/set-provider
 Body: {"provider": "together"}
 
 Response: {
@@ -169,7 +169,7 @@ Response: {
 
 ### 3. Analyze (Uses Multi-Provider Automatically!)
 ```bash
-POST http://localhost:8000/analyze
+POST http://192.168.0.108:8000/analyze
 # Now uses Groq or auto-falls back to others
 # No code changes needed!
 ```
@@ -219,13 +219,13 @@ GROQ_API_KEY=gsk_...
 
 ### Test 1: Provider Health
 ```bash
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 ```
 Expected: Shows all available providers and their status
 
 ### Test 2: Make a Request
 ```bash
-curl -X POST http://localhost:8000/analyze \
+curl -X POST http://192.168.0.108:8000/analyze \
   -H "Content-Type: application/json" \
   -d '{
     "income": 5000,
@@ -258,12 +258,12 @@ GROQ_API_KEY=gsk_your_key_here
 **Solution**:
 1. Check internet connection
 2. Verify API keys in `.env`
-3. Run `curl http://localhost:8000/health` to check status
+3. Run `curl http://192.168.0.39:8000/health` to check status
 
 ### Timeout Error
 **Solution**: Try switching provider:
 ```bash
-curl -X POST http://localhost:8000/set-provider \
+curl -X POST http://192.168.0.39:8000/set-provider \
   -H "Content-Type: application/json" \
   -d '{"provider": "together"}'
 ```
@@ -391,7 +391,7 @@ groq_key = os.getenv("GROQ_API_KEY")  # From env variables
 3. **Setup Health Alerts**
    ```bash
    # Check health every 5 minutes
-   curl http://localhost:8000/health
+   curl http://192.168.0.39:8000/health
    ```
 
 4. **Load Testing**
@@ -409,7 +409,7 @@ groq_key = os.getenv("GROQ_API_KEY")  # From env variables
 - **Provider details**: See [MULTI_PROVIDER_SETUP.md](MULTI_PROVIDER_SETUP.md)
 
 ### Before Opening Issues
-1. Check health endpoint: `curl http://localhost:8000/health`
+1. Check health endpoint: `curl http://192.168.0.39:8000/health`
 2. Review logs for error messages
 3. Verify `.env` has correct API keys
 4. Check provider websites for status

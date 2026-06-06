@@ -10,4 +10,4 @@ if (-Not (Test-Path .env)) {
 # Build and start containers
 docker-compose up --build -d
 
-Write-Host "Containers started. API should be available at http://localhost:8000" -ForegroundColor Green
+Write-Host "Containers started. API should be available at http://192.168.0.39:8000" -ForegroundColor Green

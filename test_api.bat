@@ -1,4 +1,4 @@
-curl -X POST http://localhost:8000/analyze ^
+curl -X POST http://192.168.0.39:8000/analyze ^
   -H "Content-Type: application/json" ^
   -d "{
     \"income\": 5000,

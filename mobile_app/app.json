@@ -5,12 +5,19 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "platforms": ["android", "ios", "web"],
-    "assetBundlePatterns": ["**/*"],
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "icon": "./assets/icon.png",
 
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.harish.aimoneymentor"
     },
 
     "android": {
@@ -23,7 +30,10 @@
     },
 
     "extra": {
-      "API_BASE": ""
+      "API_BASE": "http://192.168.0.39:8000",
+      "eas": {
+        "projectId": "f4a0eed7-b052-4b34-bbde-66164234e67c"
+      }
     }
   }
 }

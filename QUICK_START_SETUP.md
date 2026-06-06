@@ -40,7 +40,7 @@ python setup_llm_providers.py
 ### 2. Verify Configuration
 ```bash
 # Check health endpoint
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 
 # Expected output:
 # {
@@ -125,7 +125,7 @@ AI_PROVIDER=groq
 
 ### Test 1: Check Health
 ```bash
-curl http://localhost:8000/health
+curl http://192.168.0.108:8000/health
 ```
 
 Expected: ✅ 200 OK with provider list
@@ -139,7 +139,7 @@ Expected: ✅ 200 OK with provider list
 
 ### Test 3: Make API Call
 ```bash
-curl -X POST http://localhost:8000/analyze \
+curl -X POST http://192.168.0.108:8000/analyze \
   -H "Content-Type: application/json" \
   -d '{
     "income": 5000,
@@ -170,7 +170,7 @@ Expected: ✅ 200 OK with financial plan
 1. **Documentation**: Read [MULTI_PROVIDER_SETUP.md](MULTI_PROVIDER_SETUP.md)
 2. **Architecture**: Read [ARCHITECTURE.md](ARCHITECTURE.md)
 3. **Error Logs**: Check console output after running `python main.py`
-4. **Health Check**: Run `curl http://localhost:8000/health`
+4. **Health Check**: Run `curl http://192.168.0.39:8000/health`
 
 ---
 

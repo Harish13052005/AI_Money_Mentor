@@ -159,7 +159,7 @@
        - Dynamic API_BASE URL via getApiBase()
        - Platform-specific handling:
          * Android emulator: http://10.0.2.2:8000
-         * iOS simulator: http://localhost:8000
+         * iOS simulator: http://192.168.0.108:8000
          * Web: http://hostname:8000
          * Real Android/iOS: configurable
 

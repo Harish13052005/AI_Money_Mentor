@@ -1,5 +1,5 @@
 import requests, sys
-BASE='http://127.0.0.1:8000'
+BASE='http://192.168.0.39:8000'
 username='mobile_test_user'
 email='mobile_test_user@example.com'
 password='TestPass123'

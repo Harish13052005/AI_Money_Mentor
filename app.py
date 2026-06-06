@@ -3,6 +3,8 @@ import requests
 import json
 from datetime import datetime
 
+#backend url
+BACKEND_URL = "http://192.168.0.108:8000"
 # Page config
 st.set_page_config(
     page_title="AI Money Mentor",
@@ -14,6 +16,8 @@ st.set_page_config(
 # Initialize session state for authentication
 if 'authenticated' not in st.session_state:
     st.session_state['authenticated'] = False
+if 'access_token' not in st.session_state:
+    st.session_state['access_token'] = None
 
 # Custom CSS for better styling
 st.markdown("""
@@ -53,11 +57,22 @@ if not st.session_state['authenticated']:
         login_username = st.text_input("Username", key="login_user")
         login_password = st.text_input("Password", type="password", key="login_pass")
         if st.button("Login", type="primary"):
-            # In a real app, verify against the FastAPI backend
             if login_username and login_password:
-                st.session_state['authenticated'] = True
-                st.session_state['username'] = login_username
-                st.rerun()
+                try:
+                    # FastAPI OAuth2 expects form-data for /token
+                    response = requests.post(
+                        f"{BACKEND_URL}/token",
+                        data={"username": login_username, "password": login_password}
+                    )
+                    if response.status_code == 200:
+                        st.session_state['access_token'] = response.json().get("access_token")
+                        st.session_state['authenticated'] = True
+                        st.session_state['username'] = login_username
+                        st.rerun()
+                    else:
+                        st.error("Invalid username or password")
+                except Exception as e:
+                    st.error(f"Could not connect to backend: {e}")
             else:
                 st.error("Invalid credentials")
                 
@@ -66,7 +81,18 @@ if not st.session_state['authenticated']:
         reg_user = st.text_input("Username", key="reg_user")
         reg_pass = st.text_input("Password", type="password", key="reg_pass")
         if st.button("Create Account"):
-            st.success("Account created! Please login.")
+            if reg_email and reg_user and reg_pass:
+                try:
+                    response = requests.post(
+                        f"{BACKEND_URL}/register",
+                        json={"email": reg_email, "username": reg_user, "password": reg_pass}
+                    )
+                    if response.status_code == 200:
+                        st.success("Account created! Please login.")
+                    else:
+                        st.error(response.json().get("detail", "Registration failed"))
+                except Exception as e:
+                    st.error(f"Connection error: {e}")
     
     st.info("💡 Logging in allows you to save your financial history and track goals over time.")
     st.stop() # Stop execution here if not authenticated
@@ -82,7 +108,7 @@ with st.sidebar:
 if page == "History":
     st.header("📂 Your Financial History")
     st.info("This section will display your past analyses saved in the database.")
-    # Here you would fetch records from: GET http://localhost:8000/history
+    # Here you would fetch records from: GET http://192.168.0.39:8000/history - Ensure this uses the FastAPI backend.
 
 elif page == "Financial Analysis":
     st.header("📊 Enter Your Financial Data")
@@ -148,8 +174,14 @@ elif page == "Financial Analysis":
                     "investments": investments if investments else [{"type": "none", "amount": 0}],
                     "goals": goals
                 }
+                headers = {"Authorization": f"Bearer {st.session_state['access_token']}"}
                 try:
-                    response = requests.post("http://localhost:8000/analyze", json=data, timeout=30)
+                    response = requests.post(
+                        f"{BACKEND_URL}/analyze",
+                        json=data,
+                        headers=headers,
+                        timeout=30
+                    )
                     if response.status_code == 200:
                         result = response.json()
                         st.success("✅ Analysis Complete!")
@@ -185,8 +217,8 @@ elif page == "Financial Analysis":
                     else:
                         error_msg = response.json().get('detail', response.text)
                         st.error(f"❌ Error: {error_msg}")
-                except requests.exceptions.ConnectionError:
-                    st.error("❌ Cannot connect to backend server. Please ensure the FastAPI server is running on http://localhost:8000")
+                except requests.exceptions.ConnectionError as e:
+                    st.error(f"❌ Cannot connect to backend server. Please ensure the FastAPI server is running on {BACKEND_URL}. Error: {e}")
                 except Exception as e:
                     st.error(f"❌ Error: {str(e)}")
 
@@ -206,10 +238,16 @@ elif page == "Ask for Explanation":
             st.error("❌ Please enter a question.")
         else:
             with st.spinner("🤔 Generating explanation..."):
+                headers = {"Authorization": f"Bearer {st.session_state['access_token']}"}
                 try:
                     # Send question as query parameters
                     params = {"question": question, "context": ""}
-                    response = requests.post("http://localhost:8000/explain", params=params, timeout=30)
+                    response = requests.post(
+                        f"{BACKEND_URL}/explain", 
+                        params=params, 
+                        headers=headers, 
+                        timeout=30
+                    )
                     if response.status_code == 200:
                         result = response.json()
                         st.success("✅ Explanation Generated!")
@@ -217,8 +255,8 @@ elif page == "Ask for Explanation":
                     else:
                         error_msg = response.json().get('detail', response.text)
                         st.error(f"❌ Error: {error_msg}")
-                except requests.exceptions.ConnectionError:
-                    st.error("❌ Cannot connect to backend server. Please ensure the FastAPI server is running.")
+                except requests.exceptions.ConnectionError as e:
+                    st.error(f"❌ Cannot connect to backend server. Please ensure the FastAPI server is running on {BACKEND_URL}. Error: {e}")
                 except Exception as e:
                     st.error(f"❌ Error: {str(e)}")
 
